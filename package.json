@@ -41,7 +41,7 @@
   "main": "www/securestorage.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mibrito707/cordova-plugin-secure-storage-echo.git"
+    "url": "git+https://github.com/npguru/cordova-plugin-secure-storage-echo.git"
   },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint www/securestorage.js tests/tests.js"
@@ -52,7 +52,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mibrito707/cordova-plugin-secure-storage-echo/issues"
+    "url": "https://github.com/npguru/cordova-plugin-secure-storage-echo/issues"
   },
-  "homepage": "https://github.com/mibrito707/cordova-plugin-secure-storage-echo#readme"
+  "homepage": "https://github.com/npguru/cordova-plugin-secure-storage-echo#readme"
 }
