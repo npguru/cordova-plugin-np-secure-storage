@@ -91,22 +91,6 @@ SecureStorage.prototype = {
         } catch (e) {
             error(e);
         }
-    },
-
-    keys: function (success, error) {
-        try {
-            _executeNativeMethod(success, error, 'keys', [this.service]);
-        } catch (e) {
-            error(e);
-        }
-    },
-
-    clear: function (success, error) {
-        try {
-            _executeNativeMethod(success, error, 'clear', [this.service]);
-        } catch (e) {
-            error(e);
-        }
     }
 };
 

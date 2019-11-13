@@ -13,7 +13,6 @@ such as usernames, passwords, tokens, certificates or other sensitive informatio
 
 - Android
 - iOS
-- Windows (Windows 8.x/Store, Windows 10/UWP and Windows Phone 8.1+)
 
 ### Contents
 
@@ -94,32 +93,6 @@ ss.remove(
     console.log("Error, " + error);
   },
   "mykey"
-);
-```
-
-#### Get all keys from the storage.
-
-```js
-ss.keys(
-  function(keys) {
-    console.log("Got keys " + keys.join(", "));
-  },
-  function(error) {
-    console.log("Error, " + error);
-  }
-);
-```
-
-#### Clear all keys from the storage.
-
-```js
-ss.clear(
-  function() {
-    console.log("Cleared");
-  },
-  function(error) {
-    console.log("Error, " + error);
-  }
 );
 ```
 
@@ -311,14 +284,6 @@ If `App1` is uninstalled and `App2` tries to access the `sharedKey` from `App1`,
 Changing the lock screen type on Android erases the keystore (issues [61989](https://code.google.com/p/android/issues/detail?id=61989) and [210402](https://code.google.com/p/android/issues/detail?id=210402)). This is also described in the [Android Security: The Forgetful Keystore](https://doridori.github.io/android-security-the-forgetful-keystore/) blog post.
 
 This means that any values saved using the plugin could be lost if the user changes security settings. The plugin should therefore be used as a secure credential cache and not persistent storage on Android.
-
-#### Windows
-
-Windows implementation is based on [PasswordVault](https://msdn.microsoft.com/en-us/library/windows/apps/windows.security.credentials.passwordvault.aspx) object from the [Windows.Security.Credentials](https://msdn.microsoft.com/en-us/library/windows/apps/windows.security.credentials.aspx) namespace.
-The contents of the locker are specific to the app so different apps and services don't have access to credentials associated with other apps or services.
-
-**Limitations:** you can only store up to ten credentials per app. If you try to store more than ten credentials, you will
-encounter an error. Read [documentation](https://msdn.microsoft.com/en-us/library/windows/apps/hh701231.aspx) for more details.
 
 #### Browser
 
