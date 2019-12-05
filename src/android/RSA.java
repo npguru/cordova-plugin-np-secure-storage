@@ -9,9 +9,12 @@ import java.math.BigInteger;
 import java.security.Key;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
+import java.security.spec.MGF1ParameterSpec;
 import java.util.Calendar;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.OAEPParameterSpec;
+import javax.crypto.spec.PSource;
 import javax.security.auth.x500.X500Principal;
 
 public class RSA {
@@ -56,7 +59,8 @@ public class RSA {
     private static byte[] runCipher(int cipherMode, String alias, byte[] buf) throws Exception {
         Key key = loadKey(cipherMode, alias);
         synchronized (CIPHER) {
-            CIPHER.init(cipherMode, key);
+            OAEPParameterSpec sp = new OAEPParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-1"), PSource.PSpecified.DEFAULT);
+            CIPHER.init(cipherMode, key, sp);
             return CIPHER.doFinal(buf);
         }
     }
@@ -85,7 +89,7 @@ public class RSA {
 
     private static Cipher getCipher() {
         try {
-            return Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            return Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");
         } catch (Exception e) {
             return null;
         }
