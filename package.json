@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-secure-storage-echo",
+  "name": "cordova-plugin-np-secure-storage",
   "version": "5.0.0",
   "description": "Secure storage plugin for iOS & Android",
   "author": "Yiorgis Gozadinos <ggozad@crypho.com>",
@@ -22,7 +22,7 @@
     }
   ],
   "cordova": {
-    "id": "cordova-plugin-secure-storage-echo",
+    "id": "cordova-plugin-np-secure-storage",
     "platforms": ["android", "ios", "wp8", "windows"]
   },
   "keywords": [
@@ -41,7 +41,7 @@
   "main": "www/securestorage.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/npguru/cordova-plugin-secure-storage-echo.git"
+    "url": "git+https://github.com/npguru/cordova-plugin-np-secure-storage.git"
   },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint www/securestorage.js tests/tests.js"
@@ -52,7 +52,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/npguru/cordova-plugin-secure-storage-echo/issues"
+    "url": "https://github.com/npguru/cordova-plugin-np-secure-storage/issues"
   },
-  "homepage": "https://github.com/npguru/cordova-plugin-secure-storage-echo#readme"
+  "homepage": "https://github.com/npguru/cordova-plugin-np-secure-storage#readme"
 }
