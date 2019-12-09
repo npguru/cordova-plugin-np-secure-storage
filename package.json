@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-np-secure-storage",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "Secure storage plugin for iOS & Android",
   "author": "Yiorgis Gozadinos <ggozad@crypho.com>",
   "contributors": [
