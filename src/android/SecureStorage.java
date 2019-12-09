@@ -2,6 +2,7 @@ package com.crypho.plugins;
 
 import android.content.Context;
 
+import android.util.Log;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaPlugin;
@@ -21,9 +22,10 @@ public class SecureStorage extends CordovaPlugin {
             try {
                 String serviceName = args.getString(0);
                 String encryptionKey = args.getString(1);
-
-                storageList.put(serviceName, new SecurePreferences(getContext(), encryptionKey, serviceName));
-
+                storageList.put(serviceName, new SecurePreferences(getContext(), serviceName));
+                if (!RSA.isEntryAvailable(serviceName)) {
+                    RSA.createKeyPair(getContext(), serviceName);
+                }
                 callbackContext.success();
             } catch (Exception e) {
                 callbackContext.error(e.getMessage());
@@ -41,6 +43,7 @@ public class SecureStorage extends CordovaPlugin {
                     try {
                         if(storageList.containsKey(service)) {
                             SecurePreferences.Editor editor = storageList.get(service).edit();
+                            editor.setServiceName(service);
                             editor.putString(key, value);
                             editor.commit();
 
@@ -64,7 +67,9 @@ public class SecureStorage extends CordovaPlugin {
                 public void run() {
                     try {
                         if(storageList.containsKey(service)) {
-                            String value = storageList.get(service).getString(key, "");
+                            SecurePreferences securePreferences = storageList.get(service);
+                            securePreferences.setServiceName(service);
+                            String value = securePreferences.getString(key, "");
                             callbackContext.success(value);
                         }
                         else {
@@ -86,6 +91,7 @@ public class SecureStorage extends CordovaPlugin {
                     try {
                         if(storageList.containsKey(service)) {
                             SecurePreferences.Editor editor = storageList.get(service).edit();
+                            editor.setServiceName(service);
                             editor.putString(key, "");
                             editor.commit();
 
@@ -106,5 +112,9 @@ public class SecureStorage extends CordovaPlugin {
 
     private Context getContext(){
         return cordova.getActivity().getApplicationContext();
+    }
+
+    private void initSuccess(CallbackContext context) {
+        context.success();
     }
 }
